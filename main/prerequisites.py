@@ -6,6 +6,13 @@ from tensorflow import keras
 
 class Prerequisites:
     def __init__(self):
+        import tensorflow as tf
+        from tensorflow import keras
+        import numpy as np
+        import h5py # if saving/loading models
+
+        # Define the required versions of libraries
+        self.tf = ">=2.0.0"
         self.tensorflow = ">=2.0.0"
         self.keras = ">=2.0.0"
         self.numpy = ">=1.16.0"
