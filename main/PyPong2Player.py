@@ -1,40 +1,24 @@
 #Imports neccessary framework
 import pygame
 import random
-
-# AIPlayer class for controlling the right paddle
-class AIPlayer:
-    def decide(self, ball_x, ball_y, paddle_y):
-        # Simple AI logic: follow the ball's vertical position
-        paddle_center = paddle_y + 50  # assuming paddle height is 100
-        if ball_y < paddle_center - 10:
-            return "up"
-        elif ball_y > paddle_center + 10:
-            return "down"
-        else:
-            return "stay"
 #Initializes Pygame
 pygame.init()
 #Set up the window: width + height
 window_width = 800
 window_height = 400
 window = pygame.display.set_mode([window_width, window_height])
-pygame.display.set_caption('PyPong')
+pygame.display.set_caption('2 Player PyPong')
 clock = pygame.time.Clock()
 #Loads sound effects for bounce + score
 # Load sound effects
 bounce_sounds = [
-    pygame.mixer.Sound("main/SFX/bounce.wav"),
-    pygame.mixer.Sound("main/SFX/bounce2.wav"),
-    pygame.mixer.Sound("main/SFX/bounce3.wav"),
+    pygame.mixer.Sound("main/resources/SFX/bounce.wav"),
+    pygame.mixer.Sound("main/resources/SFX/bounce2.wav"),
+    pygame.mixer.Sound("main/resources/SFX/bounce3.wav"),
 ]
 # Removed bounce_sound here; we'll play a random one on collision instead
 # Add score sound
-try:
-    score_sound = pygame.mixer.Sound("main/SFX/scoresfx/score.wav")
-except:
-    score_sound = None
-    print("Score sound file not found.")
+score_sound = pygame.mixer.Sound("main/resources/SFX/scoresfx/score.wav")
 #Ball class definition
 class Ball:
     #Initializes ball attributes: position, velocity, radius, color
@@ -72,12 +56,10 @@ class Ball:
 #score: Checks if the ball has scored on either side
     def check_score(self):
         if self.x - self.radius <= 0:
-            if score_sound:
-                score_sound.play()
+            score_sound.play()
             return "right"
         elif self.x + self.radius >= window_width:
-            if score_sound:
-                score_sound.play()
+            score_sound.play()
             return "left"
         return None
 #Paddle class definition  
@@ -105,10 +87,7 @@ class Paddle:
         pygame.draw.rect(window, self.colour, (self.x, self.y, self.width, self.height))
 #Draws the left and right paddles with different colour
 left_paddle = Paddle(20, (0, 255, 255))#cyan paddle
-# Draws the left and right paddles with different colour
 right_paddle = Paddle(window_width - 30, (255, 0, 0))#red paddle
-# Initialize AI player for right paddle
-ai = AIPlayer()
 #Creates and serves the ball
 ball = Ball()
 ball.serve()
@@ -117,7 +96,7 @@ left_score = 0
 right_score = 0
 #Loads font for scoreboard
 try:
-    font = pygame.font.Font("main/Montserrat/static/Montserrat-Light.ttf", 27)
+    font = pygame.font.Font("main/resources/Montserrat/static/Montserrat-Light.ttf", 27)
 except:
     font = pygame.font.SysFont(None, 27)
     print("Custom font not found. Using default system font.")
@@ -148,11 +127,10 @@ def game_loop():
             left_paddle.move_up()
         if keys[pygame.K_s]:
             left_paddle.move_down()
-    # AI controls right paddle
-        decision = ai.decide(ball.x, ball.y, right_paddle.y)
-        if decision == "up":
+    #Moves the right paddle with 'Up Arrow' and 'Down Arrow' keys
+        if keys[pygame.K_UP]:
             right_paddle.move_up()
-        elif decision == "down":
+        if keys[pygame.K_DOWN]:
             right_paddle.move_down()
 #Fills the window with a dark color (very dark grey)
         window.fill((10, 10, 10))
@@ -176,7 +154,12 @@ def game_loop():
 #updates the display and controls the refresh rate
         pygame.display.update()
         clock.tick(60)
-#starts game loop
-game_loop()
-#quits pygame
-pygame.quit()
+
+# Define an entry point for importing
+def run_game():
+    game_loop()
+    pygame.quit()
+
+# If the file is run directly, start the game
+if __name__ == "__main__":
+    run_game()
