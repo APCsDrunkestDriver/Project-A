@@ -263,4 +263,3 @@ class Prerequisites:
     def apply_pretrained_model_custom_objects(self, model, path):
         model.custom_objects = self.import_pretrained_custom_objects(path)
         return model
-main
