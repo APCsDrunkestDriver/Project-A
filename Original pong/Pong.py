@@ -1,3 +1,7 @@
+#!/usr/bin/env python3.9.6
+
+#requires python 3.6.9 and arcade 2.6.9
+# to run python3 Pong.py
 import arcade
 import random
 import time
@@ -124,12 +128,13 @@ class pong(arcade.Window):
 
         #defines the play variable for the menu
         self.play = False
-
+        '''
         #define the bounce sound
         self.bounce_sound = arcade.load_sound("/Users/kobiaxtens/Library/CloudStorage/OneDrive-Personal/code/python/term 2/venv_pong.py/pygame pong/bounce_sound.wav")
         arcade.play_sound(self.bounce_sound)
         self.fail_sound = arcade.load_sound("/Users/kobiaxtens/Library/CloudStorage/OneDrive-Personal/code/python/term 2/venv_pong.py/pygame pong/fail_sound.wav")
         arcade.play_sound(self.fail_sound)
+'''
 
         #defines weather the game is paused or not
         self.paused = False
