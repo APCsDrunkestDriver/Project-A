@@ -136,7 +136,7 @@ except:
 #Updates the scoreboard with the current score
 def update_scoreboard():
     left_text = font.render((f"Player 1: {left_score}"), True, (0, 255, 255))
-    right_text = font.render((f"Player 2: {right_score}"), True, (255, 0, 0))
+    right_text = font.render((f"Player 2 (Ai): {right_score}"), True, (255, 0, 0))
     window.blit(left_text, (20, 20))
     window.blit(right_text, (window_width - right_text.get_width() - 20, 20))
 #Main game loop
