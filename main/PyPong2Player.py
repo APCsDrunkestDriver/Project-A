@@ -33,8 +33,8 @@ class Ball:
     def serve(self):
         self.x = window_width // 2
         self.y = window_height // 2
-        self.xVel = random.uniform(1.0, 5.0)
-        self.yVel = random.uniform(1.0, 5.0)
+        self.xVel = random.choice([-5.0, 5.0])
+        self.yVel = random.uniform(-5.0, 5.0)
 
     def move(self): #Updates the ball's position based on its velocity repeatedly
         self.x += self.xVel
@@ -44,15 +44,28 @@ class Ball:
         pygame.draw.circle(window, self.colour, (int(self.x), int(self.y)), self.radius)
 #Checks for collisions with paddles and window edges
     def check_collision(self, paddles):
-        if self.y - self.radius <= 0 or self.y + self.radius >= window_height:
+    # Top or bottom wall collision
+        if self.y - self.radius <= 0:
+            self.y = self.radius  # Prevent over-collision
             self.yVel *= -1
-            self.yVel += random.uniform(-5.0, 5.0)
+            self.yVel += random.uniform(-1.0, 1.0)  # smaller tweak
             random.choice(bounce_sounds).play()
+        elif self.y + self.radius >= window_height:
+            self.y = window_height - self.radius
+            self.yVel *= -1
+            self.yVel += random.uniform(-1.0, 1.0)
+            random.choice(bounce_sounds).play()
+
+        # Paddle collision
         for paddle in paddles:
-            if paddle.x <= self.x <= paddle.x + paddle.width and paddle.y <= self.y <= paddle.y + paddle.height:
+            if paddle.x <= self.x <= paddle.x + paddle.width and \
+                paddle.y <= self.y <= paddle.y + paddle.height:
                 self.xVel *= -1
-                self.xVel += random.uniform(-5.0, 5.0)
+                self.xVel += random.uniform(-1.0, 1.0)
                 random.choice(bounce_sounds).play()
+        max_speed = 7
+        self.xVel = max(-max_speed, min(self.xVel, max_speed))
+        self.yVel = max(-max_speed, min(self.yVel, max_speed))
 #score: Checks if the ball has scored on either side
     def check_score(self):
         if self.x - self.radius <= 0:
