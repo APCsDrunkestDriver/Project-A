@@ -1,10 +1,11 @@
 #!/usr/bin/env python3.9.6
 
-#requires python 3.6.9 and arcade 2.6.9
+#requires python 3.9.6 and arcade 2.6.9
 # to run python3 Pong.py
 import arcade
 import random
 import time
+from pathlib import Path
 
 
 #define a class for the left paddle
@@ -128,13 +129,15 @@ class pong(arcade.Window):
 
         #defines the play variable for the menu
         self.play = False
-        '''
+
+        # define the base direcory for the bounce sound
+        base_dir = Path(__file__).resolve().parent
+
         #define the bounce sound
-        self.bounce_sound = arcade.load_sound("/Users/kobiaxtens/Library/CloudStorage/OneDrive-Personal/code/python/term 2/venv_pong.py/pygame pong/bounce_sound.wav")
+        self.bounce_sound = arcade.load_sound(base_dir/"wav-files"/"bounce_sound.wav")
         arcade.play_sound(self.bounce_sound)
-        self.fail_sound = arcade.load_sound("/Users/kobiaxtens/Library/CloudStorage/OneDrive-Personal/code/python/term 2/venv_pong.py/pygame pong/fail_sound.wav")
+        self.fail_sound = arcade.load_sound(base_dir/"wav-files"/"fail_sound.wav")
         arcade.play_sound(self.fail_sound)
-'''
 
         #defines weather the game is paused or not
         self.paused = False
@@ -177,8 +180,8 @@ class pong(arcade.Window):
         else:
             #draws the score
             text_colour = (255,255,255,220)
-            arcade.draw_text (self.left_score, 140,320,text_colour, 100)
-            arcade.draw_text (self.right_score, 450,320,text_colour, 100)
+            arcade.draw_text (str(self.left_score), 140,320,text_colour, 100)
+            arcade.draw_text (str(self.right_score), 450,320,text_colour, 100)
 
             #when the ball flys off the left screen
             if self.ball.x+self.ball.width*5 < 0:
