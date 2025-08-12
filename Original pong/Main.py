@@ -9,7 +9,7 @@ from pathlib import Path
 from left_paddle import left_paddle
 from right_paddle import right_paddle
 from ball import ball
-from window1 import pong
+from window import pong
 
 
 
