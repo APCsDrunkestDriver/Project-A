@@ -223,7 +223,7 @@ class pong(arcade.Window):
                 arcade.play_sound(self.bounce_sound)
 
                 #defines a function to make the vilocity equal 10
-                # I think this was in order to stop the ball from being blasted into the stratosphere because it would go too fast.
+                # stops the ball from being blasted into the stratosphere if it goes too fast.
                 def make_it_10():
                         x,y = self.ball.vilocity
                         #if x is negative
@@ -231,7 +231,7 @@ class pong(arcade.Window):
                                 #changes x to posative
                                 x = x*-1
                                 #finds the number to divide by
-                                f=(x+y)/15
+                                f=(x+y)/10
                                 #dividees x and y by the factor
                                 tenx = x/f
                                 teny = y/f
@@ -243,7 +243,7 @@ class pong(arcade.Window):
                                 #changes y to posative
                                 y = y*-1
                                 #finds the number to divide by
-                                f=(x+y)/20
+                                f=(x+y)/10
                                 #dividees x and y by the factor
                                 tenx = x/f
                                 teny = y/f
@@ -255,7 +255,7 @@ class pong(arcade.Window):
                                 y = y*-1
                                 x = x*-1
                                 #finds the number to divide by
-                                f=(x+y)/20
+                                f=(x+y)/10
                                 #dividees x and y by the factor
                                 tenx = x/f
                                 teny = y/f
@@ -265,7 +265,7 @@ class pong(arcade.Window):
                                 return tenx, teny
 
                         else:
-                                f=(x+y)/15
+                                f=(x+y)/10
                                 #finds the number to divide by
                                 #dividees x and y by the factor
                                 tenx = x/f
