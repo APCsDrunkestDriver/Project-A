@@ -4,6 +4,7 @@
 # to run python3 Pong.py
 import arcade
 import random
+import tensorflow as tf
 import time
 from pathlib import Path
 from left_paddle import left_paddle

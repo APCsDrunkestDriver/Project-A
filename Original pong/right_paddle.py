@@ -4,6 +4,7 @@ import arcade
 class right_paddle:
     
     #defines a function to define the variables of the left paddle
+    # these parameters are defined on line 59 of window.py
     def __init__ (self,x,y,width,height,colour, move_speed):
         self.x = x
         self.y = y
