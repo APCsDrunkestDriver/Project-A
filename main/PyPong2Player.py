@@ -12,13 +12,13 @@ clock = pygame.time.Clock()
 #Loads sound effects for bounce + score
 # Load sound effects
 bounce_sounds = [
-    pygame.mixer.Sound("main/resources/SFX/bounce.wav"),
-    pygame.mixer.Sound("main/resources/SFX/bounce2.wav"),
-    pygame.mixer.Sound("main/resources/SFX/bounce3.wav"),
+    pygame.mixer.Sound("resources/SFX/bounce.wav"),
+    pygame.mixer.Sound("resources/SFX/bounce2.wav"),
+    pygame.mixer.Sound("resources/SFX/bounce3.wav"),
 ]
 # Removed bounce_sound here; we'll play a random one on collision instead
 # Add score sound
-score_sound = pygame.mixer.Sound("main/resources/SFX/scoresfx/score.wav")
+score_sound = pygame.mixer.Sound("resources/SFX/scoresfx/score.wav")
 #Ball class definition
 class Ball:
     #Initializes ball attributes: position, velocity, radius, color
