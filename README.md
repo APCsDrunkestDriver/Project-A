@@ -1,6 +1,6 @@
 # Project A
 
-## setting up your developement environment
+## setting up your developement environment (WARNING, THESE INSTRUCTIONS ARE OUTDATED)
 ### for Main Pong
 
 1. clone the repository
