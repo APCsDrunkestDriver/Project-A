@@ -11,7 +11,7 @@
 4. install the dependancies
    `pip install -r requirements.txt`
 
-One liner if your lazy
+Copy and Paste:
 ```bash
 git clone https://github.com/APCsDrunkestDriver/Project-A.git && cd Project-A/Original\ pong/ && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 
